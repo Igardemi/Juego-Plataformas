@@ -79,8 +79,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Accedemos al componente de texto, importamos la libreria UnityEngine.UI.
-        texto.GetComponent<Text>().text = "Número de Parejas: " + numParejas;
+        
 
     }
 
@@ -102,7 +101,9 @@ public class GameManager : MonoBehaviour
                 //Desactivamos las cartas que han hecho pareja
                 listaCartas[index].SetActive(false);
                 listaCartas[indexPrev].SetActive(false);
-                numParejas += 1; //Añadimos 1 al contador de parejas ya encontradas. 
+                numParejas += 1; //Añadimos 1 al contador de parejas ya encontradas.
+                //Accedemos al componente de texto, importamos la libreria UnityEngine.UI.
+                texto.GetComponent<Text>().text = "Número de Parejas: " + numParejas;
             }
             else {
 
