@@ -7,6 +7,7 @@ public class SpaceshipScript : MonoBehaviour
     public int force;
     Rigidbody2D myRigidBody;
     public GameObject rocket;
+    private float fireRate = 0.2f; //camtidad de tiempo entre disparos
     // Start is called before the first frame update
     void Start()
     {
@@ -27,21 +28,36 @@ public class SpaceshipScript : MonoBehaviour
        
         myRigidBody.position = new Vector2(xPos, transform.position.y);
 
-        //vamos detectar la pulsacion de la tecla disparo.
-        if (Input.GetButton("Jump")) {
+        fireRate = fireRate + Time.deltaTime;
+        if (Input.GetButton("Jump"))//capturamos el pulsado de la tecla espacio.
+        {
+            ShootSystem();
+
+        }
+
+    }
+
+    private void ShootSystem()
+    {
+
+        if (fireRate > 0.2f)
+        {
+           
             //Instanciamos el prefab del misil.
-            Vector2 posicionMisil = new Vector2(transform.position.x, transform.position.y + 1.5f);
-            GameObject clone = Instantiate(rocket,posicionMisil, Quaternion.identity);
+            Vector2 posicionMisil = new Vector2(transform.position.x, transform.position.y + 1.8f);
+            GameObject clone = Instantiate(rocket, posicionMisil, Quaternion.identity);
 
             //le otorgamos fuerza al rocket para su movimiento.
-            Rigidbody2D cloneRB= clone.GetComponent<Rigidbody2D>();
+            Rigidbody2D cloneRB = clone.GetComponent<Rigidbody2D>();
             //definimos la direccion de movimiento.
             Vector2 direccion = new Vector2(0f, 1f);
             //añadimos la fuerzaal rocket.
             int fuerzaRocket = 200;
             //añadimos la fuerza para el movimiento.
             cloneRB.AddForce(direccion * fuerzaRocket);
+            fireRate = 0;
         }
-            
+
     }
+
 }

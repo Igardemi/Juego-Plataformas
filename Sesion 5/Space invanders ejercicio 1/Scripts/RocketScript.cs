@@ -7,7 +7,7 @@ public class RocketScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DestroyObject(this.gameObject, 5.0f);
+        Destroy(this.gameObject, 5.0f);
     }
 
     // Update is called once per frame
